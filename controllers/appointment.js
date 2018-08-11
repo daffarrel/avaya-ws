@@ -49,8 +49,11 @@ function getDoctorlistByDepartmentId(id, next) {
 
 function getSlotlistByDateAndDoctorId(date,id, next) {
     const query = apt_query.querySlotlistByDateAndDoctorId();
-    let slot=6;
-    const params = [date,date,id,slot];
+    //let slot_day=6;
+   slot_day =getSlotDay(date);
+   console.log("slot_day***************************:"+slot_day);
+    
+    const params = [date,date,id,slot_day];
     console.log("getSlotlistByDateAnddoctorId:"+query);
     console.log("getSlotlistByDateAnddoctorId:"+params);
     db_query.paramQuery(query, params, (err, result) => {
@@ -58,11 +61,15 @@ function getSlotlistByDateAndDoctorId(date,id, next) {
         return next(null, result);
     })
 }
-function savepatient(patientDetail, next) {
-    const query = apt_query.querySavepatient();
-    let slot=6;
-    const params = [date,date,id,slot];
-    console.log("savepatient:"+query);
+function savepatientDetail(patientDetail, next) {
+    console.log("savepatientmmmmmmmmmmmmm:");
+const  query = apt_query.querySavepatient();
+console.log("savepatient:"+query);
+const  params = ['Consultation',patientDetail.selectedTimeSlot,patientDetail.selectedTimeSlot,patientDetail.selectedDate,'type',
+    patientDetail.mobile,'N',patientDetail.selectedDoctorId,new Date(),'N','971','Avaya user',
+    patientDetail.selectedNoOfSlot,'N','N',patientDetail.selectedOfficeId,'N',
+];
+   
     console.log("savepatient:"+params);
     db_query.paramQuery(query, params, (err, result) => {
         if (err) return next(err);
@@ -70,6 +77,13 @@ function savepatient(patientDetail, next) {
     })
 }
 
+function getSlotDay(appointmentDate){
+    let array=appointmentDate.split('-');
+    const aptDate = new Date(array[0], array[1]-1, array[2]);
+    console.log("aptDate***************************:"+aptDate);
+    return aptDate.getDay()-1;
+
+}
 
 
 exports.getPatientListByMobileNo = getPatientListByMobileNo;
@@ -77,5 +91,5 @@ exports.getOfficeList = getOfficeList;
 exports.getDepartmentList = getDepartmentList;
 exports.getDoctorlistByDepartmentId = getDoctorlistByDepartmentId;
 exports.getSlotlistByDateAndDoctorId = getSlotlistByDateAndDoctorId;
-exports.savepatient = savepatient;
+exports.savepatientDetail = savepatientDetail;
 

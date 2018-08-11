@@ -70,10 +70,10 @@ const cors = corsMiddleware({
 
 server.listen(config.port,()=>{    
     require('./routes')(server);
-    console.log("Server started on port: ", config.port);
+    console.log("AVAYA Server started on port: ", config.port);
 });
 
 redisClient.on('connect', function () {
-    console.log('connected to redis server on port : ',config.redis_port);
+    console.log(' connected to redis server on port : ',config.redis_port);
 });
 exports.redisClient = redisClient;

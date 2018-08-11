@@ -43,11 +43,20 @@ module.exports = function(server){
     });
 
     server.post({ path: '/savepatient', version: '1.0.0' },(req, res, next)=>{ 
-        appointment.savepatient(req.body,(err,response) => {
+        console.log("savepatient main");
+        appointment.savepatientDetail(req.body,(err,response) => {
             if(err) return res.send(400, {DisplayMessage:err});
             return res.send(200,response);
         });
     })
+
+    server.post({ path: '/savepatient123', version: '1.0.0' },(req, res, next)=>{ 
+        console.log("savepatient main"+req.body.id);
+       
+    })
+
+    
+
 
 
 
