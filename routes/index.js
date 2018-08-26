@@ -36,7 +36,7 @@ module.exports = function(server){
     });
 
     server.get({ path:'/slotlist', version:'1.0.0' },(req, res, next)=>{
-        appointment.getSlotlistByDateAndDoctorId(req.query.date,req.query.id,(err,response) => {
+        appointment.getTimeSlotlistByDateAndDoctorId(req.query.date,req.query.id,(err,response) => {
             if(err) return res.send(400, {DisplayMessage:err});
             return res.send(200,response);
         });

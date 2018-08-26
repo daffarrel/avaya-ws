@@ -47,13 +47,9 @@ function getDoctorlistByDepartmentId(id, next) {
     })
 }
 
-function getSlotlistByDateAndDoctorId(date,id, next) {
-    const query = apt_query.querySlotlistByDateAndDoctorId();
-    //let slot_day=6;
-   slot_day =getSlotDay(date);
-   console.log("slot_day***************************:"+slot_day);
-    
-    const params = [date,date,id,slot_day];
+function getTimeSlotlistByDateAndDoctorId(aptDate,doctorId, next) {
+    const query = apt_query.queryTimeSlotlistByDateAndDoctorId();
+    const params = [aptDate,aptDate,doctorId,new Date(aptDate).getDay()];
     console.log("getSlotlistByDateAnddoctorId:"+query);
     console.log("getSlotlistByDateAnddoctorId:"+params);
     db_query.paramQuery(query, params, (err, result) => {
@@ -77,19 +73,11 @@ const  params = ['Consultation',patientDetail.selectedTimeSlot,patientDetail.sel
     })
 }
 
-function getSlotDay(appointmentDate){
-    let array=appointmentDate.split('-');
-    const aptDate = new Date(array[0], array[1]-1, array[2]);
-    console.log("aptDate***************************:"+aptDate);
-    return aptDate.getDay()-1;
-
-}
-
 
 exports.getPatientListByMobileNo = getPatientListByMobileNo;
 exports.getOfficeList = getOfficeList;
 exports.getDepartmentList = getDepartmentList;
 exports.getDoctorlistByDepartmentId = getDoctorlistByDepartmentId;
-exports.getSlotlistByDateAndDoctorId = getSlotlistByDateAndDoctorId;
+exports.getTimeSlotlistByDateAndDoctorId = getTimeSlotlistByDateAndDoctorId;
 exports.savepatientDetail = savepatientDetail;
 

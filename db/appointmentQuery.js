@@ -31,7 +31,7 @@ function queryDoctorlistByDepartmentId(){
    ' where do.department_id=? ';
 }
 
-function querySlotlistByDateAndDoctorId(){
+function queryTimeSlotlistByDateAndDoctorId(){
     const columns = [
         ' apt_mstr.slots',' apt_mstr.doctors_id ','apt_mstr.slot_day'
     ];
@@ -45,19 +45,15 @@ function querySlotlistByDateAndDoctorId(){
 }
 
 function querySavepatient(){
-    var insertQuery = 'INSERT INTO appointments(appoint_type, appoint_hr, appoint_min,  appoint_date, appoint_name, mobile, appoint_status, doctors_id, entry_date, cancel_status, mobile_code, enteredby, slot_nos, confirm_status, bill_submit, office_id, sms_status) VALUE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-  
-    //id, appoint_type, appoint_hr, appoint_min, appoint_purpose, appoint_date, op_number, appoint_name, mobile, appoint_status, doctors_id, entry_date, cancel_status, cancel_date, mobile_code, enteredby, date_of_birth, slot_nos, confirm_status, confirm_by, confirm_date, appr_no, consult_id, patient_email, cancel_reason, bill_submit, office_id, ip_id, ip_number, ipFlag, resource_id, refer_id, sms_status, sms_time, send_by, patient_age, sex, patient_agemonth, patient_ageweek, noanswer_status, noanswer_date, noanswer_by, switchoff_status, switchoff__date, switchoff__by, beingseen_status, beingseen_date, beingseen_by, notseen_status, notseen_date, notseen_by, doctor_view
-   // VALUES ('Consultation','15:00','15:15','',null,'2017-01-31T20:00:00.000Z',null,'MALAK AL JAMAL ','52574696874','N',4,'2017-02-01T09:17:49.000Z','N',null,'+966',11,null,'1','N',null,null,'','','',null,'N','2','','',null,null,null,'N',null,null,22,'Female',null,null,null,'N',null,33,null);
-   
-     return  insertQuery;
+    var insertQuery = 'INSERT INTO appointments(appoint_type, appoint_hr, appoint_min,  appoint_date, appoint_name, mobile, appoint_status, doctors_id, entry_date, cancel_status, mobile_code, enteredby, slot_nos, confirm_status, bill_submit, office_id, sms_status) VALUE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'; 
+    return  insertQuery;
 }
 
 exports.queryPatientListByMobileNo = queryPatientListByMobileNo;
 exports.queryOfficeList = queryOfficeList;
 exports.queryDepartmentList = queryDepartmentList;
 exports.queryDoctorlistByDepartmentId = queryDoctorlistByDepartmentId;
-exports.querySlotlistByDateAndDoctorId = querySlotlistByDateAndDoctorId;
+exports.queryTimeSlotlistByDateAndDoctorId = queryTimeSlotlistByDateAndDoctorId;
 exports.querySavepatient = querySavepatient;
 
 
